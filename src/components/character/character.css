@@ -1,0 +1,36 @@
+.img-character {
+  width: 150px;
+  height: 200px;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.detail-character  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.global-character {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 200px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175em 0.5em, rgba(2, 8, 20, 0.08) 0px 0.085em 0.175em;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.6;
+  transition: box-shadow 0.15s ease 0s, transform 0.15s ease 0s, -webkit-box-shadow 0.15s ease 0s, -webkit-transform 0.15s ease 0s;
+  overflow: hidden;
+}
+
+.global-character > *{
+  flex: 1 1 0px;
+}

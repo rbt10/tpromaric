@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import './style.css'
 import ReactPaginate from 'react-paginate'
+import Character from '../components/character'
 
 const CharactersScreen = () => {
   const [characters, setCharacters] = useState([])
@@ -35,11 +36,11 @@ const CharactersScreen = () => {
   return (
     <div>
       {characters.length > 0 ? (
-        <ul>
+        <div className='characters'>
           {characters.map(perso => (
-            <li key={perso.id}>{perso.name}</li>
+            <Character key={perso.id} character={perso}></Character>
           ))}
-        </ul>
+        </div>
       ) : (
         <></>
       )}
