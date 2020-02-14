@@ -1,0 +1,9 @@
+.logo {
+  height: 100px;
+  height: 100px;
+}
+
+.flex-logo {
+  display: flex;
+  justify-content: center;
+}
