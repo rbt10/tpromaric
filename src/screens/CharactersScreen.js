@@ -7,19 +7,19 @@ import Character from '../components/character'
 const CharactersScreen = () => {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(0)
-  useEffect(() => {
-    get(0)
-  }, [])
+  const [offset, setOffset] = useState(0)
 
-  const get = async offset => {
+  useEffect(() => {
+    get()
+  }, [offset])
+
+  const get = async () => {
     try {
-      console.log('CHECK', offset)
       const { data } = await Axios.get(
         `https://gateway.marvel.com:443/v1/public/characters?apikey=e74466c078cf03a51e11abdec65b254f&hash=6593b515c15ff8d46f53d37ef149c20c&ts=1581697076&offset=${offset}`
       )
       setCharacters(data.data.results)
       setPage(Math.ceil(data.data.total / 20))
-      console.log('res', data.data)
     } catch (err) {
       console.log(err)
     }
@@ -27,10 +27,9 @@ const CharactersScreen = () => {
 
   const handlePageClick = data => {
     console.log('data', data)
-    let selected = data.selected
-    let offset = Math.ceil(selected * 20)
-    console.log('TCL: CharactersScreen -> offset', offset)
-    get(offset)
+    const selected = data.selected
+    const o = Math.ceil(selected * 20)
+    setOffset(o)
   }
 
   return (
