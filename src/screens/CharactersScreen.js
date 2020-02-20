@@ -19,15 +19,6 @@ const CharactersScreen = () => {
     }
   }, [offset, name])
 
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     get()
-  //   }, 500)
-  //   return () => {
-  //     clearTimeout(handler)
-  //   }
-  // }, [name])
-
   const get = async () => {
     try {
       const filterName = name ? `&nameStartsWith=${name}` : ''
