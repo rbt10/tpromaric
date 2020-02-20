@@ -13,7 +13,6 @@ const CharactersScreen = props => {
   const [offset, setOffset] = useState(0)
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(true)
-  const [animation, setAnimation] = useState('visible')
 
   const icon = {
     hidden: {

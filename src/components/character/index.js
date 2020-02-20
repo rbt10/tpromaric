@@ -8,16 +8,25 @@ const Character = ({ character, history }) => {
   }
 
   return (
-    <div
-      className='global-character'
-      onClick={() => redirectToDetail(character.id)}
-    >
+    <div className='global-character'>
       <img
         className='img-character'
         src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
       />
       <div className='detail-character'>
         <strong>{character.name}</strong>
+        <div className='detail-character--description'>
+          {character.description}
+        </div>
+        <div
+          className='detail-character--buttons'
+          onClick={() => redirectToDetail(character.id)}
+        >
+          <strong>More info</strong>
+          <span>
+            <i className='fas fa-chevron-right'></i>
+          </span>
+        </div>
       </div>
     </div>
   )
