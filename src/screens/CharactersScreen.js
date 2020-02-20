@@ -4,7 +4,7 @@ import './style.css'
 import ReactPaginate from 'react-paginate'
 import Character from '../components/character'
 
-const CharactersScreen = () => {
+const CharactersScreen = props => {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(0)
   const [offset, setOffset] = useState(0)
@@ -37,7 +37,11 @@ const CharactersScreen = () => {
       {characters.length > 0 ? (
         <div className='characters'>
           {characters.map(perso => (
-            <Character key={perso.id} character={perso}></Character>
+            <Character
+              key={perso.id}
+              character={perso}
+              history={props.history}
+            ></Character>
           ))}
         </div>
       ) : (
