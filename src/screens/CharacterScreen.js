@@ -3,7 +3,6 @@ import { useParams } from 'react-router'
 import Axios from 'axios'
 import { FaShare } from 'react-icons/fa'
 import Loader from '../components/loader'
-import { motion } from 'framer-motion'
 
 const CharacterScreen = ({ history }) => {
   const [character, setCharacter] = useState(undefined)
