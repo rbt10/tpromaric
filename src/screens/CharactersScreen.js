@@ -3,12 +3,14 @@ import Axios from 'axios'
 import './style.css'
 import ReactPaginate from 'react-paginate'
 import Character from '../components/character'
+import Loader from '../components/loader'
 
 const CharactersScreen = props => {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(0)
   const [offset, setOffset] = useState(0)
   const [name, setName] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -18,15 +20,6 @@ const CharactersScreen = props => {
       clearTimeout(handler)
     }
   }, [offset, name])
-
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     get()
-  //   }, 500)
-  //   return () => {
-  //     clearTimeout(handler)
-  //   }
-  // }, [name])
 
   const get = async () => {
     try {
@@ -38,6 +31,8 @@ const CharactersScreen = props => {
       setPage(Math.ceil(data.data.total / 20))
     } catch (err) {
       console.log(err)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -63,32 +58,38 @@ const CharactersScreen = props => {
           placeholder='Search...'
         />
       </form>
-      {characters.length > 0 ? (
-        <div className='characters'>
-          {characters.map(perso => (
-            <Character
-              key={perso.id}
-              character={perso}
-              history={props.history}
-            ></Character>
-          ))}
-        </div>
+      {loading ? (
+        <Loader />
       ) : (
-        <></>
+        <>
+          {characters.length > 0 ? (
+            <div className='characters'>
+              {characters.map(perso => (
+                <Character
+                  key={perso.id}
+                  character={perso}
+                  history={props.history}
+                ></Character>
+              ))}
+            </div>
+          ) : (
+            <></>
+          )}
+          <ReactPaginate
+            previousLabel={'<'}
+            nextLabel={'>'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
+            pageCount={page}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            subContainerClassName={'pages pagination'}
+            activeClassName={'active'}
+          />
+        </>
       )}
-      <ReactPaginate
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={page}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
-      />
     </div>
   )
 }
