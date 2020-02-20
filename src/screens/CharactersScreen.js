@@ -8,15 +8,31 @@ const CharactersScreen = props => {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(0)
   const [offset, setOffset] = useState(0)
+  const [name, setName] = useState('')
 
   useEffect(() => {
-    get()
-  }, [offset])
+    const handler = setTimeout(() => {
+      get()
+    }, 500)
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [offset, name])
+
+  // useEffect(() => {
+  //   const handler = setTimeout(() => {
+  //     get()
+  //   }, 500)
+  //   return () => {
+  //     clearTimeout(handler)
+  //   }
+  // }, [name])
 
   const get = async () => {
     try {
+      const filterName = name ? `&nameStartsWith=${name}` : ''
       const { data } = await Axios.get(
-        `https://gateway.marvel.com:443/v1/public/characters?apikey=e74466c078cf03a51e11abdec65b254f&hash=6593b515c15ff8d46f53d37ef149c20c&ts=1581697076&offset=${offset}`
+        `https://gateway.marvel.com:443/v1/public/characters?apikey=e74466c078cf03a51e11abdec65b254f&hash=6593b515c15ff8d46f53d37ef149c20c&ts=1581697076&offset=${offset}${filterName}`
       )
       setCharacters(data.data.results)
       setPage(Math.ceil(data.data.total / 20))
@@ -32,8 +48,21 @@ const CharactersScreen = props => {
     setOffset(o)
   }
 
+  const search = event => {
+    const { value } = event.target
+    setName(value)
+  }
+
   return (
     <div>
+      <form className='form-search'>
+        <input
+          onChange={search}
+          type='text'
+          name='search'
+          placeholder='Search...'
+        />
+      </form>
       {characters.length > 0 ? (
         <div className='characters'>
           {characters.map(perso => (
