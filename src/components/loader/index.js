@@ -4,7 +4,10 @@ import './style.css'
 const Loader = () => {
   return (
     <div className='loader center center-screen'>
-      <i className='fa fa-spinner fa-spin fa-3x fa-fw' />
+      <i
+        style={{ color: 'teal' }}
+        className='fa fa-circle-notch fa-spin fa-5x fa-fw'
+      />
     </div>
   )
 }

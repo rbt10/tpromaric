@@ -32,10 +32,13 @@
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 20px;
+  height: 100%;
 }
 
 .form-search {
-  margin: 10px;
+  width: 100%;
+  margin-left: 10px;
+  height: 100%;
   box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175em 0.5em, rgba(2, 8, 20, 0.08) 0px 0.085em 0.175em;
 }
 
@@ -81,4 +84,38 @@
 
 .character-screen--description {
   margin-top: 1rem;
+}
+
+.header {
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  flex-flow: row;
+  align-items: center;
+}
+
+.header > div > strong {
+  margin-left: 10px;
+}
+
+.searchbar {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.searchbar > img {
+  height: 100%;
+}
+
+.item {
+  width: 40%;
+  overflow: visible;
+  stroke: red;
+  stroke-width: 6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
