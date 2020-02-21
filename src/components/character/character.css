@@ -42,7 +42,11 @@
 }
 
 .detail-character--description {
-  height: 30%;
-  text-overflow: ellipsis;
+  font-size: 0.8em;
+  color: #7f7f7f;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }

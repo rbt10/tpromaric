@@ -33,53 +33,41 @@ const CharacterScreen = ({ history }) => {
     history.goBack()
   }
 
+  if (loading) {
+    return <Loader />
+  }
+
   return (
-    <div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          {character ? (
-            <div className='character-screen--main'>
-              <div className='header'>
-                <div onClick={back}>
-                  <i className='fas fa-chevron-left'></i>
-                  <strong>Back</strong>
-                </div>
-              </div>
-              <div className='character-screen--image'>
-                <img
-                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                />
-              </div>
-              <div className='character-screen--backgroundimage'></div>
-              <div className='character-screen--infos'>
-                <div className='character-screen--title'>
-                  <div className='character-screen--names'>
-                    <h1 className='character-screen--heroname'>
-                      {character.name}
-                    </h1>
-                    <span className='character-screen--realname'>
-                      realName?
-                    </span>
-                  </div>
-                  <div className='character-screen--actions'>
-                    <button>
-                      <FaShare size='1.5em' />
-                    </button>
-                  </div>
-                </div>
-                <div className='character-screen--description'>
-                  {character.description || 'No description available'}
-                </div>
-              </div>
-              <ReactPlayer url={sch} playing />
-            </div>
-          ) : (
-            <></>
-          )}
-        </>
-      )}
+    <div className='character-screen--main'>
+      <div className='header'>
+        <div onClick={back}>
+          <i className='fas fa-chevron-left'></i>
+          <strong>Back</strong>
+        </div>
+      </div>
+      <div className='character-screen--image'>
+        <img
+          src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+        />
+      </div>
+      <div className='character-screen--backgroundimage'></div>
+      <div className='character-screen--infos'>
+        <div className='character-screen--title'>
+          <div className='character-screen--names'>
+            <h1 className='character-screen--heroname'>{character.name}</h1>
+            <span className='character-screen--realname'>realName?</span>
+          </div>
+          <div className='character-screen--actions'>
+            <button>
+              <FaShare size='1.5em' />
+            </button>
+          </div>
+        </div>
+        <div className='character-screen--description'>
+          {character.description || 'No description available'}
+        </div>
+      </div>
+      {/* <ReactPlayer url={sch} playing /> */}
     </div>
   )
 }

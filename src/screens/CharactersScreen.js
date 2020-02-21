@@ -52,6 +52,7 @@ const CharactersScreen = props => {
   }
 
   const handlePageClick = data => {
+    setLoading(true)
     console.log('data', data)
     const selected = data.selected
     const o = Math.ceil(selected * 20)
