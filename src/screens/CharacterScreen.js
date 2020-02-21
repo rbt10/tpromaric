@@ -3,9 +3,6 @@ import { useParams } from 'react-router'
 import Axios from 'axios'
 import { FaShare } from 'react-icons/fa'
 import Loader from '../components/loader'
-import sch from '../assets/sch.mp3'
-
-import ReactPlayer from 'react-player'
 
 const CharacterScreen = ({ history }) => {
   const [character, setCharacter] = useState(undefined)

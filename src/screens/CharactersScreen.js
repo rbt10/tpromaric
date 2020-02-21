@@ -4,8 +4,8 @@ import './style.css'
 import ReactPaginate from 'react-paginate'
 import Character from '../components/character'
 import Loader from '../components/loader'
-import logo from '../assets/marvelLogo.svg'
 import { motion } from 'framer-motion'
+import { getFavorisFromLocalStorage } from '../services/FavorisService'
 
 const CharactersScreen = props => {
   const [characters, setCharacters] = useState([])
