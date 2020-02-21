@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { shuffle } from 'lodash'
 
 const spring = {
@@ -13,7 +13,7 @@ const spring = {
 
 const Loader = () => {
   const [colors, setColors] = useState(initialColors)
-
+  useAnimation()
   useEffect(() => {
     setTimeout(() => setColors(shuffle(colors)), 300)
   }, [colors])
