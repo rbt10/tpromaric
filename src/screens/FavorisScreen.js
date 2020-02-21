@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Loader from '../components/loader'
-import { getCharacter } from '../services/CharactersService'
 
 const FavorisScreen = () => {
   const [favoris, setFavoris] = useState([])
@@ -12,10 +11,6 @@ const FavorisScreen = () => {
 
   const getFavoris = async () => {
     const favorisFromLocalStorage = JSON.parse(localStorage.getItem('favoris'))
-
-    const promisesArray = favorisFromLocalStorage.map(f => getCharacter(f))
-    const responses = await Promise.all(promisesArray)
-    console.log(responses)
 
     setFavoris(favorisFromLocalStorage)
 

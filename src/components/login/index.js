@@ -9,6 +9,7 @@ export default function Login(props) {
       props.history.push('characters')
     }
   }, [])
+
   return (
     <div className='login-backgound'>
       <Logo></Logo>
