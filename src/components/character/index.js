@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
-import { getFavorisFromLocalStorage } from '../../services/FavorisService'
+import {
+  getFavorisFromLocalStorage,
+  removeFavorisFromLocalStorage,
+  addFavorisToLocalStorage
+} from '../../services/FavorisService'
 import './character.css'
 
-const Character = ({ character, favoris, history }) => {
+const Character = ({ character, history }) => {
   const [fav, setFav] = useState(false)
+  let favoris = getFavorisFromLocalStorage()
   const redirectToDetail = id => {
     history.push(`/characters/${id}`)
   }
 
   useEffect(() => {
-    const data = getFavorisFromLocalStorage()
-    if (data.include(character.id)) {
-      setFav()
+    if (favoris.find(el => el.id === character.id)) {
+      setFav(true)
     }
+  }, [])
+
+  useEffect(() => {
+    if (fav) {
+      addFavorisToLocalStorage(character)
+    } else {
+      removeFavorisFromLocalStorage(character.id)
+    }
+    favoris = getFavorisFromLocalStorage()
   }, [fav])
 
   const variants = {
@@ -34,6 +47,8 @@ const Character = ({ character, favoris, history }) => {
 
   const add = () => {
     setFav(!fav)
+    console.log(fav)
+    
   }
 
   return (
@@ -69,7 +84,6 @@ const Character = ({ character, favoris, history }) => {
   )
 }
 Character.propTypes = {
-  character: PropTypes.object,
-  favoris: PropTypes.array
+  character: PropTypes.object
 }
 export default Character

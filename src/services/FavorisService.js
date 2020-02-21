@@ -5,9 +5,10 @@ export const getFavorisFromLocalStorage = () => {
 }
 
 export const addFavorisToLocalStorage = character => {
+  console.log('item', character)
   const tab = getFavorisFromLocalStorage()
 
-  if (tab.find(t => t.id === character.id)) {
+  if (!tab.find(t => t.id === character.id)) {
     tab.push(character)
   }
 
