@@ -1,5 +1,7 @@
+const FAVORIS = 'favoris'
+
 export const getFavorisFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('favoris') || [])
+  return JSON.parse(localStorage.getItem(FAVORIS)) || [])
 }
 
 export const addFavorisToLocalStorage = id => {
@@ -9,5 +11,5 @@ export const addFavorisToLocalStorage = id => {
     tab.push(id)
   }
 
-  localStorage.setItem('favoris', JSON.stringify(tab))
+  localStorage.setItem(FAVORIS, JSON.stringify(tab))
 }
