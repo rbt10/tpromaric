@@ -50,3 +50,14 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
+
+.detail-character-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-color {
+  color: #b61c1c
+}
