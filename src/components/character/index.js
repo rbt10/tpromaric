@@ -10,18 +10,23 @@ const Character = ({ character, favoris, history }) => {
     history.push(`/characters/${id}`)
   }
 
-  const add = () => {
-    setFav(!fav)
-    controls.set('visible')
-    controls.start({
+  const variants = {
+    active: {
       rotate: 360,
       transition: {
         duration: 0.5
       }
-    })
-    controls.mount()
-    console.log('ici')
-    // controls.stop()
+    },
+    inActive: {
+      rotate: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
+  const add = () => {
+    setFav(!fav)
   }
 
   return (
@@ -36,7 +41,8 @@ const Character = ({ character, favoris, history }) => {
           <motion.i
             onClick={add}
             className={`fa-heart ${fav ? 'fas icon-color' : 'far'}`}
-            animate={controls}
+            animate={fav ? 'active' : 'inActive'}
+            variants={variants}
           />
         </div>
         <div className='detail-character--description'>
